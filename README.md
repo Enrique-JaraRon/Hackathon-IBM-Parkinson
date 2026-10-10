@@ -31,6 +31,7 @@ Source: ESILV kickoff assessment slide. A previous slide described the 30% chall
 ## Deliverables and navigation
 
 - [Assessment and deadlines](docs/ASSESSMENT_AND_DEADLINES.md)
+- [14 October operational plan](docs/DAY2_COMMAND_CENTER.md)
 - [GitHub collaboration and credit budget](docs/TEAM_WORKFLOW.md)
 - [Experiment journal](docs/EXPERIMENT_LOG.md)
 - [Documentation / reproducibility](docs/TECHNICAL_DOCUMENTATION.md)
@@ -38,13 +39,16 @@ Source: ESILV kickoff assessment slide. A previous slide described the 30% chall
 - [Team handoff template](docs/HANDOFF.md)
 - [Permissions and competition rules](docs/RULES_AND_PERMISSION.md)
 - [5-minute video storyboard](video/STORYBOARD.md)
+- [Video script in French](video/SCRIPT_TEMPLATE_FR.md) / [English](video/SCRIPT_TEMPLATE_EN.md)
+- [GitHub collaboration guide](docs/GITHUB_GUIDE.md)
+- [Model card template](docs/MODEL_CARD_TEMPLATE.md)
 - [Final delivery checklist](docs/FINAL_DELIVERABLES.md)
 
 **Important:** A professor reportedly allowed external AI assistance, but the published competition rules still require Bob as the coding agent. Do not disguise code provenance. Seek explicit confirmation from the organizers that any relaxed rule also applies to **Kaggle eligibility**, before treating external-agent-authored submission code as eligible.
 
 ## Shared work process
 
-Use the official organizer project locally in Bob; use this public repository for **safe, non-sensitive documentation** and collaboration notes. Reports live in the team's **Skore Hub** workspace. One change at a time, meaningful commit messages, short reviews, and an evidence-based final report. GitHub issues hold the work queue.
+Use the official organizer project locally in Bob; use this public repository for **safe, non-sensitive documentation** and collaboration notes. Reports live in the team's **Skore Hub** workspace. One change at a time, meaningful commit messages, short reviews, and an evidence-based final report. [GitHub issues](https://github.com/Enrique-JaraRon/Hackathon-IBM-Parkinson/issues) hold the work queue. Invite teammates via **Settings → Collaborators** (not available through the current connector).
 
 ## Timeline
 
