@@ -218,3 +218,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Bobathon competition safeguards — do not publish dataset, predictions or secrets
+/data/
+/submissions/
+*.csv
+*.parquet
+*.feather
+*.pkl
+*.joblib
+.skore
+.env
+.env.*
+!.env.example
+.venv/
+.bob/skills/
+.pi/
+.agents/
+scratch/
+.worktrees/
+*.zip
+*.mp4
+*.mov
+*.avi
