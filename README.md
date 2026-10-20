@@ -1,62 +1,60 @@
-# Hackathon-IBM-Parkinson
+# Parkinson's Disease Progression — Machine Learning Hackathon
 
-**Team TheLebanese · ESILV × IBM × Probabl · Bobathon 2026**
+**ESILV × IBM × Probabl · Bobathon 2026 · Team TheLebanese**
 
-[Official competition](https://www.kaggle.com/competitions/bobathon-esilv/) · [Official lab](https://github.com/probabl-ai/bobathon-esilv) · [Skore Hub](https://skore.probabl.ai/)
+A four-person team project to predict a debiased **OFF-state MDS-UPDRS motor score** from visit-level information. The main machine-learning challenge is **generalisation to patients absent from the training data**, making patient-level validation and leakage prevention essential.
 
-## Mission
+[Competition](https://www.kaggle.com/competitions/bobathon-esilv/) · [Official workshop repository](https://github.com/probabl-ai/bobathon-esilv) · [Skore](https://skore.probabl.ai/)
 
-Predict the **debiased true OFF MDS-UPDRS motor score** for Parkinson's patient visits (continuous regression target). Competition ranking uses **visit-level RMSE** on completely unseen **patients**, so patient-wise validation matters more than a random split of visits.
+## Project at a glance
 
-This repository is **public** for now and contains **public-safe documentation only**. It is **not** a mirror/fork of the organizer's dataset or an environment to publish predictions. Do not push CSVs, patient-level observations, submission files, Skore credentials, private reports, or unapproved code.
+| Dimension | Approach |
+| --- | --- |
+| **Task** | Continuous regression: estimate patient-visit motor severity |
+| **Evaluation metric** | Root Mean Squared Error (RMSE); lower is better |
+| **Validation** | Patient-grouped cross-validation so the same patient is not split across training and validation folds |
+| **Model development** | Baselines, tabular preprocessing, gradient boosting and ensemble experiments |
+| **Experiment tracking** | Local experiment records and Skore reports |
+| **Main methodological concern** | Patient-level data leakage, appropriate splitting and fair model comparison |
 
-## Assessment priorities
+## Reported team results
 
-| Assessment dimension | Contribution to overall grade |
-|---|---:|
-| Official Kaggle score | **35%** |
-| Code documentation | **21%** |
-| Model originality | **14%** |
-| Video (strictly ≤ 5 minutes) | **30%** |
+The team reported the following results from its **restricted local workspace**:
 
-Source: ESILV kickoff assessment slide. A previous slide described the 30% challenge component as 'presentation'; the later kickoff document specifies **code documentation**. Confirm discrepancies with course staff.
+- **Selected experiment:** `exp26`, an ensemble involving histogram-based gradient boosting and LightGBM.
+- **Out-of-fold RMSE:** approximately **3.263** (reported local result: 3.263067).
+- **Skore cross-validation mean RMSE:** approximately **3.263** (reported: 3.262757).
+- **Early DummyRegressor baseline:** RMSE **16.83** on **one patient-grouped holdout**, not the same cross-validation protocol.
 
-## Confirmed progress (local team work; not publicly reproduced here)
+**Interpretation:** The early dummy baseline and final grouped cross-validation score come from **different validation designs** and should not be used to claim a precise percentage improvement. The final score is a **team-reported result**, not independently reproducible from this public repository.
 
-- **Setup:** Python 3.13.7, Bob + skore, all 14 skills installed, Skore Hub workspace `TheLebanese`, **7/7 setup tests passed** on one teammate's machine.
-- **Exploration:** performed through Bob on the competition-provided synthetic visit data.
-- **Baseline:** mean DummyRegressor RMSE **16.83** on **one patient-grouped holdout** (not five-fold CV). This number must not be compared as if it were an identical GroupKFold estimate.
-- **Next:** the organizers' [Day 2 guide](https://github.com/probabl-ai/bobathon-esilv/blob/main/docs/DAY2.md) covers Ridge, patient-grouped CV, gradient boosting, categorical handling, and final submissions through Bob/skore.
+## Methodology
 
-## Deliverables and navigation
+1. **Define the target and patient identifier.** Treat visits from the same patient as related observations.
+2. **Keep validation groups disjoint.** Patient-grouped folds better reflect performance on unseen patients than random visit splits.
+3. **Fit preprocessing inside training folds.** Avoid using validation patients to learn feature transformations or target information.
+4. **Compare baselines and nonlinear models.** Track the changes in features, parameters and validation design.
+5. **Inspect errors and limitations.** Report out-of-fold error, leakage checks and modelling assumptions.
 
-- [Assessment and deadlines](docs/ASSESSMENT_AND_DEADLINES.md)
-- [14 October operational plan](docs/DAY2_COMMAND_CENTER.md)
-- [GitHub collaboration and credit budget](docs/TEAM_WORKFLOW.md)
-- [Experiment journal](docs/EXPERIMENT_LOG.md)
-- [Documentation / reproducibility](docs/TECHNICAL_DOCUMENTATION.md)
-- [Methodological review points](docs/ML_REVIEW_CHECKLIST.md)
-- [Team handoff template](docs/HANDOFF.md)
-- [Permissions and competition rules](docs/RULES_AND_PERMISSION.md)
-- [5-minute video storyboard](video/STORYBOARD.md)
-- [Video script in French](video/SCRIPT_TEMPLATE_FR.md) / [English](video/SCRIPT_TEMPLATE_EN.md)
-- [GitHub collaboration guide](docs/GITHUB_GUIDE.md)
-- [Model card template](docs/MODEL_CARD_TEMPLATE.md)
-- [Final delivery checklist](docs/FINAL_DELIVERABLES.md)
+This structure matters more than a single leaderboard figure: a strong Kaggle score without patient-level validation can be misleading.
 
-**Important:** A professor reportedly allowed external AI assistance, but the published competition rules still require Bob as the coding agent. Do not disguise code provenance. Seek explicit confirmation from the organizers that any relaxed rule also applies to **Kaggle eligibility**, before treating external-agent-authored submission code as eligible.
+## What is public here
 
-## Shared work process
+This repository intentionally contains **documentation, experiment-tracking templates, methodological checklists and a video outline**. It is **not the executable final model repository**. The competition data, patient-level rows, submission files, model artefacts and restricted reports are not published here.
 
-Use the official organizer project locally in Bob; use this public repository for **safe, non-sensitive documentation** and collaboration notes. Reports live in the team's **Skore Hub** workspace. One change at a time, meaningful commit messages, short reviews, and an evidence-based final report. [GitHub issues](https://github.com/Enrique-JaraRon/Hackathon-IBM-Parkinson/issues) hold the work queue. Invite teammates via **Settings → Collaborators** (not available through the current connector).
+- [Technical documentation](docs/TECHNICAL_DOCUMENTATION.md)
+- [Experiment log (public-safe summary)](docs/EXPERIMENT_LOG.md)
+- [Methodological review checklist](docs/ML_REVIEW_CHECKLIST.md)
+- [Rules and publication boundaries](docs/RULES_AND_PERMISSION.md)
+- [Final deliverables checklist](docs/FINAL_DELIVERABLES.md)
 
-## Timeline
+Earlier [session plan](docs/DAY2_COMMAND_CENTER.md), [team collaboration guide](docs/TEAM_WORKFLOW.md) and [video storyboard](video/STORYBOARD.md) are retained as **historical project materials**, not as an indication that the competition is still ongoing.
 
-- **14 Oct 2026:** online competition session, **08:15–12:00 CEST**; official Kaggle submission deadline **12:00**.
-- **20 Oct 2026, 18:00 CEST:** video and repository/code delivery on DVL. The kickoff PDF also mentions a ZIP due **14 Oct at noon**; verify that requirement now.
+## Lessons and limitations
 
-## Boundaries
+- Grouped cross-validation is critical when visits are nested within patients.
+- Reported RMSE depends on both the model and the validation protocol.
+- Ensembles can improve predictive performance but also increase complexity and reproducibility requirements.
+- The public repository does not contain sufficient source code or permitted data to rerun the reported results.
 
-The data and competition outputs have restricted use. Keep all four competition CSVs on **authorized local teammate systems** only. Never publish data, labels, predictions, API keys, or private reports in this public GitHub repository.
-
-*The team will add only verified outcomes and claims supported by its own Bob/skore records. No leaderboard rank or final model performance is claimed yet.*
+**Scope:** an educational collaborative machine-learning project; not a clinical prediction tool.
